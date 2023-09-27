@@ -1,4 +1,4 @@
-using Infrastructure.Extensions;
+﻿using Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
