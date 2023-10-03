@@ -5,7 +5,7 @@
             context: .
             dockerfile: API/Dockerfile
         container_name: todoer-api
-        depends_on: 
+        depends_on:
             - db
         ports:
             - 5001:443
@@ -17,4 +17,8 @@
             - db-variables.env
         ports:
             - 5432:5432
-    
+        volumes:
+            - db-data:/var/lib/postgresql/data
+            
+volumes:
+    db-data: { }
