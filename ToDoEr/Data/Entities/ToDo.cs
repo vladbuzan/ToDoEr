@@ -6,4 +6,5 @@ public class ToDo : IEntity
 {
     public Guid Id { get; set; }
     public required string Description { get; set; }
+    public ToDoList ToDoList { get; set; } = null!;
 }

@@ -10,9 +10,17 @@ builder.Services.AddToDoErDb(config.GetConnectionString("Db") ??
     throw new SetupException("Db connection string is not set"));
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();

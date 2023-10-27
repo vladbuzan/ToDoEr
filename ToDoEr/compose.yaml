@@ -9,6 +9,8 @@
             - db
         ports:
             - 5001:443
+        environment:
+            - DOTNET_ENVIRONMENT=Development
     
     db:
         image: postgres:16-alpine
