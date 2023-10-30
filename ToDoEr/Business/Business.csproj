@@ -6,5 +6,25 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\ToDoLists\Commands\" />
+      <Folder Include="Features\ToDoLists\Models\" />
+      <Folder Include="Features\ToDoLists\Queries\" />
+      <Folder Include="Features\ToDos\Commands\" />
+      <Folder Include="Features\ToDos\Models\" />
+      <Folder Include="Features\ToDos\Queries\" />
+      <Folder Include="Features\Users\Commands\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Data\Data.csproj" />
+    </ItemGroup>
+
 
 </Project>

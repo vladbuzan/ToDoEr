@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Extensions;
+namespace Business.Extensions;
 
 public static class ServiceCollectionExtensions
 {

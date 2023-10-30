@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Business\Business.csproj" />
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
@@ -25,12 +26,17 @@
       <Folder Include="Controllers\" />
       <Folder Include="Filters\" />
       <Folder Include="Middleware\" />
-      <Folder Include="Requests\" />
-      <Folder Include="Responses\" />
+      <Folder Include="Requests\ToDoLists\" />
+      <Folder Include="Requests\ToDos\" />
+      <Folder Include="Requests\Users\" />
+      <Folder Include="Responses\ToDoLists\" />
+      <Folder Include="Responses\ToDos\" />
+      <Folder Include="Responses\Users\" />
       <Folder Include="Utils\" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.1.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

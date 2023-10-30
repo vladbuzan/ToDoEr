@@ -1,5 +1,5 @@
-﻿using Infrastructure.Exceptions;
-using Infrastructure.Extensions;
+﻿using Business.Extensions;
+using Infrastructure.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
