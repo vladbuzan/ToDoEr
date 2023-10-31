@@ -1,3 +1,10 @@
-﻿namespace Business.Features.Users.Models;
+﻿using Business.Models.Base;
+using Data.Entities;
 
-public record UserSimpleDto(Guid Id, string Email); 
+namespace Business.Features.Users.Models;
+
+public class UserSimpleDto : BaseDto<UserSimpleDto, User>
+{
+    public Guid Id { get; set; }
+    public required string Email { get; set; }
+} 

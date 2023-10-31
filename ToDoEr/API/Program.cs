@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddToDoErDb(config.GetConnectionString("Db") ??
     throw new SetupException("Db connection string is not set"));
 
+builder.Services.AddMapster();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -1,4 +1,6 @@
-﻿using Data.Context;
+﻿using Business.Models.Base;
+using Data.Context;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,4 +14,13 @@ public static class ServiceCollectionExtensions
     ) => services
         .AddDbContext<ToDoErContext>(options =>
             options.UseNpgsql(connectionString));
+    
+    public static IServiceCollection AddMapster(this IServiceCollection services)
+    {
+        var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+        var assembly = typeof(BaseDto<,>).Assembly;
+        typeAdapterConfig.Scan(assembly);
+
+        return services;
+    }
 }
