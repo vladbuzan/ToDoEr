@@ -9,6 +9,8 @@ public class GetUsers
 
     public class Handler : IRequestHandler<Request, List<UserSimpleDto>>
     {
-        public Task<List<UserSimpleDto>> Handle(Request request, CancellationToken cancellationToken) => throw new NotImplementedException();
+        public Task<List<UserSimpleDto>> Handle(Request request,
+            CancellationToken cancellationToken
+        ) => throw new NotImplementedException();
     }
 }
