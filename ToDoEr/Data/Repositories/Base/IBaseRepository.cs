@@ -15,4 +15,12 @@ public interface IBaseRepository<TEntity> where TEntity : class, IEntity
         Expression<Func<TEntity, TResult>> selector,
         CancellationToken cancellation
     );
+
+    public Task<List<TEntity>> GetAllAsyncAsNoTracking(CancellationToken cancellation);
+
+    public Task<List<TResult>> GetAllAsyncAsNoTracking<TResult>(CancellationToken cancellation);
+
+    public Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellation);
+    
+    public Task<TResult> GetByIdAsync<TResult>(Guid id, CancellationToken cancellation);
 }
