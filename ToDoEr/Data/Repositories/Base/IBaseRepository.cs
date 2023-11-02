@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Data.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Data.Repositories.Base;
 
@@ -21,6 +22,8 @@ public interface IBaseRepository<TEntity> where TEntity : class, IEntity
     public Task<List<TResult>> GetAllAsyncAsNoTracking<TResult>(CancellationToken cancellation);
 
     public Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellation);
-    
+
     public Task<TResult> GetByIdAsync<TResult>(Guid id, CancellationToken cancellation);
+
+    public Task<EntityEntry<TEntity>> AddAsync(TEntity entity, CancellationToken cancellation);
 }

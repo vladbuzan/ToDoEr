@@ -1,4 +1,6 @@
-﻿using Business.Models.Base;
+﻿using Business.MediatR.Behaviours;
+using Business.MediatR.Interfaces;
+using Business.Models.Base;
 using Data.Context;
 using Data.Repositories.Implementations;
 using Data.Repositories.Interfaces;
@@ -16,6 +18,13 @@ public static class ServiceCollectionExtensions
         .AddDbContext<ToDoErContext>(options =>
             options.UseNpgsql(connectionString));
 
+    public static IServiceCollection AddMediatR(this IServiceCollection services) =>
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssemblyContaining<ITransactionalRequest>();
+            cfg.AddOpenBehavior(typeof(TransactionalBehaviour<,>));
+        });
+
     public static IServiceCollection AddMapster(this IServiceCollection services)
     {
         var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
@@ -27,5 +36,7 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services) => services
         .AddScoped<IUserRepository, UserRepository>()
+        .AddScoped<IToDoRepository, ToDoRepository>()
+        .AddScoped<IToDoListRepository, ToDoListRepository>()
         .AddScoped<IUnitOfWork, UnitOfWork>();
 }

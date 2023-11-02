@@ -21,7 +21,6 @@
       <Folder Include="Features\ToDos\Commands\" />
       <Folder Include="Features\ToDos\Models\" />
       <Folder Include="Features\ToDos\Queries\" />
-      <Folder Include="Features\Users\Commands\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -3,6 +3,7 @@ using Data.Context;
 using Data.Interfaces;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Data.Repositories.Base;
 
@@ -70,4 +71,8 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
         return entity;
     }
+
+    public async Task<EntityEntry<TEntity>> AddAsync(TEntity entity,
+        CancellationToken cancellation = default
+    ) => await _context.Set<TEntity>().AddAsync(entity, cancellation);
 }
