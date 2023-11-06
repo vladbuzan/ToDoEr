@@ -7,5 +7,4 @@ public class UserComplexDto : BaseDto<UserComplexDto, User>
 {
     public Guid Id { get; set; }
     public required string Email { get; set; }
-    public required List<ToDoList> ToDoLists { get; set; }
 }

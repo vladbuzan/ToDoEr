@@ -12,6 +12,8 @@
       <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
+      <PackageReference Include="StackExchange.Redis.Extensions.Core" Version="9.1.0" />
+      <PackageReference Include="StackExchange.Redis.Extensions.MsgPack" Version="9.1.0" />
     </ItemGroup>
 
     <ItemGroup>
