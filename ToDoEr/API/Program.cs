@@ -1,5 +1,8 @@
 ﻿using Business.Extensions;
 using Infrastructure.Exceptions;
+using Infrastructure.Extensions;
+using Infrastructure.Services.CacheService.Implementations;
+using Infrastructure.Services.CacheService.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -12,7 +15,11 @@ builder.Services.AddToDoErDb(config.GetConnectionString("Db") ??
 builder.Services
     .AddMapster()
     .AddMediatR()
-    .AddRepositories();
+    .AddRepositories()
+    .AddRedisCache(config.GetConnectionString("Db") ??
+        throw new SetupException("Db connection string is not set"))
+    .AddSingleton<ICacheService, MessagePackCacheService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
