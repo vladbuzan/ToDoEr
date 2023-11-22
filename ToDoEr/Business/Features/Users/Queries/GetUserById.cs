@@ -1,12 +1,14 @@
 ﻿using Business.Features.Users.Models;
+using Business.MediatR.Interfaces;
 using Data.Repositories.Interfaces;
+using Infrastructure.Services.CacheService.Models;
 using MediatR;
 
 namespace Business.Features.Users.Queries;
 
 public class GetUserById
 {
-    public class Request : IRequest<UserComplexDto>
+    public class Request : ICacheableRequest<UserComplexDto, UserCacheEntry> 
     {
         public Guid Id { get; set; }
     }

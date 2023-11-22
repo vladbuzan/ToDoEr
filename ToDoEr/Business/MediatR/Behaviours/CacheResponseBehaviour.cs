@@ -10,7 +10,7 @@ public class CacheResponseBehaviour<TRequest, TResponse, TCache>
     : IPipelineBehavior<TRequest, TResponse>
     where TResponse : IBaseDto
     where TCache : ICacheEntry
-    where TRequest : ICacheableRequest<TResponse>
+    where TRequest : ICacheableRequest<TResponse, TCache>
 {
     private readonly ICacheService _cache;
 
