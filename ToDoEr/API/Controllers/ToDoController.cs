@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ToDoController : ControllerBase
-{
-    
-}
+public class ToDoController : ControllerBase { }

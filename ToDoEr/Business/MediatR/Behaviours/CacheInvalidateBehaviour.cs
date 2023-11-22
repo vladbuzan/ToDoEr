@@ -19,7 +19,7 @@ public class CacheInvalidateBehaviour<TRequest, TResponse>
     {
         var result = await next();
         await _cache.RemoveAsync(request.Id.ToString(), cancellationToken);
-        
+
         return result;
     }
 }

@@ -7,7 +7,7 @@ public class UserCacheEntry : ICacheEntry
 {
     [Key(0)]
     public Guid Id { get; set; }
-    
+
     [Key(1)]
     public required string Email { get; set; }
 }
