@@ -24,6 +24,7 @@ public static class ServiceCollectionExtensions
             cfg.RegisterServicesFromAssemblyContaining<ITransactionalRequest>();
             cfg.AddOpenBehavior(typeof(TransactionalBehaviour<,>));
             cfg.AddOpenBehavior(typeof(CacheResponseBehaviour<,,>));
+            cfg.AddOpenBehavior(typeof(CacheInvalidateBehaviour<,>));
         });
 
     public static IServiceCollection AddMapster(this IServiceCollection services)

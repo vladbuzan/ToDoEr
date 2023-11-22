@@ -2,7 +2,7 @@
 
 namespace Business.MediatR.Interfaces;
 
-public interface ICacheInvalidateRequest : IRequest<Unit>
+public interface ICacheInvalidateRequest : IRequest
 {
     public Guid Id { get; set; }
 }
