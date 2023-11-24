@@ -18,8 +18,6 @@
       <Folder Include="Features\ToDoLists\Commands\" />
       <Folder Include="Features\ToDoLists\Models\" />
       <Folder Include="Features\ToDoLists\Queries\" />
-      <Folder Include="Features\ToDos\Commands\" />
-      <Folder Include="Features\ToDos\Models\" />
       <Folder Include="Features\ToDos\Queries\" />
     </ItemGroup>
 

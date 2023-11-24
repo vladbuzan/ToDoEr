@@ -10,7 +10,7 @@ namespace Business.Features.Users.Commands;
 
 public class CreateUser
 {
-    public class Request : ITransactionalRequest<UserSimpleDto>, IRequest<UserComplexDto>
+    public class Request : ITransactionalRequest<UserComplexDto>
     {
         public IDbContextTransaction? Transaction { get; set; }
         public required string Email { get; set; }
