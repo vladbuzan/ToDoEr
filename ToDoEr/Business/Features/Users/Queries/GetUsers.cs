@@ -8,7 +8,7 @@ public class GetUsers
 {
     public class Request : IRequest<List<UserSimpleDto>> { };
 
-    public class Handler : IRequestHandler<Request, List<UserSimpleDto>>
+    internal class Handler : IRequestHandler<Request, List<UserSimpleDto>>
     {
         private readonly IUserRepository _userRepository;
 

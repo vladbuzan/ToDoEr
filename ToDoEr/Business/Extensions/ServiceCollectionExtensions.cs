@@ -1,5 +1,5 @@
-﻿using Business.MediatR.Behaviours;
-using Business.MediatR.Interfaces;
+﻿using Business.Features.Users.Queries;
+using Business.MediatR.Behaviours;
 using Business.Models.Base;
 using Data.Context;
 using Data.Repositories.Implementations;
@@ -16,15 +16,15 @@ public static class ServiceCollectionExtensions
         string connectionString
     ) => services
         .AddDbContext<ToDoErContext>(options =>
-            options.UseNpgsql(connectionString));
+            options.UseNpgsql(connectionString)
+                .UseLazyLoadingProxies());
 
     public static IServiceCollection AddMediatR(this IServiceCollection services) =>
         services.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssemblyContaining<ITransactionalRequest>();
-            cfg.AddOpenBehavior(typeof(TransactionalBehaviour<,>));
-            cfg.AddOpenBehavior(typeof(CacheResponseBehaviour<,,>));
-            cfg.AddOpenBehavior(typeof(CacheInvalidateBehaviour<,>));
+            cfg.RegisterServicesFromAssemblyContaining<GetUsers>()
+                .AddOpenBehavior(typeof(TransactionalBehaviour<,>))
+                .AddOpenBehavior(typeof(CacheInvalidateBehaviour<,>));
         });
 
     public static IServiceCollection AddMapster(this IServiceCollection services)

@@ -7,7 +7,7 @@ namespace Infrastructure.Services.CacheService.Implementations;
 public class MessagePackCacheService : ICacheService
 {
     private readonly IDistributedCache _cache;
-    private const int DEFAULT_EXP_MINUTES = 10;
+    private const int DefaultExpMinutes = 10;
 
     public MessagePackCacheService(IDistributedCache cache) => _cache = cache;
 
@@ -24,12 +24,13 @@ public class MessagePackCacheService : ICacheService
             serializedEntity,
             new()
             {
-                SlidingExpiration = TimeSpan.FromMinutes(DEFAULT_EXP_MINUTES)
+                SlidingExpiration = TimeSpan.FromMinutes(DefaultExpMinutes)
             },
             cancellationToken);
     }
 
     public async Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken)
+        where T : ICacheEntry
     {
         var serializedEntity = await _cache.GetAsync(key, cancellationToken);
 

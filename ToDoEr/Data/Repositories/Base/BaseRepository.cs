@@ -11,8 +11,13 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
     where TEntity : class, IEntity
 {
     private readonly ToDoErContext _context;
-
-    protected BaseRepository(ToDoErContext context) => _context = context;
+    protected readonly DbSet<TEntity> DbSet;
+    
+    protected BaseRepository(ToDoErContext context)
+    {
+        _context = context;
+        DbSet = context.Set<TEntity>();
+    }
 
     public Task<List<TResult>> GetAllAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
         CancellationToken cancellation = default

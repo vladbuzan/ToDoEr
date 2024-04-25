@@ -10,14 +10,14 @@ namespace Business.Features.Users.Commands;
 
 public class CreateUser
 {
-    public class Request : ITransactionalRequest<UserSimpleDto>, IRequest<UserComplexDto>
+    public class Request : ITransactionalRequest<UserSimpleDto>
     {
         public IDbContextTransaction? Transaction { get; set; }
         public required string Email { get; set; }
         public required string Password { get; set; }
     }
 
-    internal class Handler : IRequestHandler<Request, UserComplexDto>
+    internal class Handler : IRequestHandler<Request, UserSimpleDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -28,7 +28,7 @@ public class CreateUser
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<UserComplexDto> Handle(Request request,
+        public async Task<UserSimpleDto> Handle(Request request,
             CancellationToken cancellationToken
         )
         {
@@ -36,7 +36,7 @@ public class CreateUser
             await _userRepository.AddAsync(user, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return user.Adapt<UserComplexDto>();
+            return user.Adapt<UserSimpleDto>();
         }
     }
 }
