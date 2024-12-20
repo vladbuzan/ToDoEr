@@ -1,4 +1,4 @@
-﻿using Infrastructure.Services.CacheService.Interfaces;
+﻿using Application.Abstractions.Services.CacheService;
 using MessagePack;
 
 namespace Infrastructure.Services.CacheService.Models;

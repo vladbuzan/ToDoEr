@@ -1,15 +1,12 @@
-﻿using Infrastructure.Services.CacheService.Interfaces;
+﻿using Application.Abstractions.Services.CacheService;
 using MessagePack;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace Infrastructure.Services.CacheService.Implementations;
 
-public class MessagePackCacheService : ICacheService
+public class MessagePackCacheService(IDistributedCache cache) : ICacheService
 {
-    private readonly IDistributedCache _cache;
     private const int DefaultExpMinutes = 10;
-
-    public MessagePackCacheService(IDistributedCache cache) => _cache = cache;
 
     public async Task SetAsync<T>(T entity,
         string key,
@@ -20,7 +17,7 @@ public class MessagePackCacheService : ICacheService
         var serializedEntity = MessagePackSerializer.Serialize(entity,
             cancellationToken: cancellationToken);
 
-        await _cache.SetAsync(key,
+        await cache.SetAsync(key,
             serializedEntity,
             new()
             {
@@ -32,7 +29,7 @@ public class MessagePackCacheService : ICacheService
     public async Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken)
         where T : ICacheEntry
     {
-        var serializedEntity = await _cache.GetAsync(key, cancellationToken);
+        var serializedEntity = await cache.GetAsync(key, cancellationToken);
 
         if (serializedEntity is null) return default;
 
@@ -41,5 +38,5 @@ public class MessagePackCacheService : ICacheService
     }
 
     public Task RemoveAsync(string key, CancellationToken cancellationToken = default) =>
-        _cache.RemoveAsync(key, cancellationToken);
+        cache.RemoveAsync(key, cancellationToken);
 }

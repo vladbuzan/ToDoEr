@@ -1,7 +1,7 @@
 ﻿using API.Requests.Users;
-using Business.Features.Users.Commands;
-using Business.Features.Users.Models;
-using Business.Features.Users.Queries;
+using Application.Features.Users.Commands;
+using Application.Features.Users.Models;
+using Application.Features.Users.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +9,14 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase
+public class UserController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public UserController(IMediator mediator) => _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<UserComplexDto>> GetById([FromRoute] Guid id,
         CancellationToken cancellationToken
     )
     {
-        var response = await _mediator.Send(new GetUserById.Request
+        var response = await mediator.Send(new GetUserById.Request
             {
                 Id = id
             },
@@ -34,7 +30,7 @@ public class UserController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        var response = await _mediator.Send(new CreateUser.Request
+        var response = await mediator.Send(new CreateUser.Request
             {
                 Email = request.Email,
                 Password = request.Password

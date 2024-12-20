@@ -5,10 +5,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ToDoListController
+public class ToDoListController(IMediator mediator)
 {
-    private readonly IMediator _mediator;
-    
-    public ToDoListController(IMediator mediator) => _mediator = mediator;
-    
+    private readonly IMediator _mediator = mediator;
 }

@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{263F31C2-033F-48DA-846B-04A0D7F6AD4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{C339715E-456D-4A87-955C-B2773090A22B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C339715E-456D-4A87-955C-B2773090A22B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D4F94047-D49B-4FA8-8FB5-747B27674E4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{D4F94047-D49B-4FA8-8FB5-747B27674E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{9E216F3C-1EFD-4035-AC43-F52EB55DB0CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{9E216F3C-1EFD-4035-AC43-F52EB55DB0CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B79516CD-657B-4C0A-849F-A02BCEB764C0}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		api-variables.env = api-variables.env
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{9EBA3CDC-F29E-4C24-ACA2-D21B40CF7DC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService", "{D8441C7C-14EA-4027-8273-E82FE1BAE268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService", "AuthService\AuthService.csproj", "{8D815A59-3CCA-4A76-8B12-0176ED8B3544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{4620071D-6D1B-4EA3-987D-AFBEC7095E0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,5 +46,21 @@ Global
 		{9E216F3C-1EFD-4035-AC43-F52EB55DB0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E216F3C-1EFD-4035-AC43-F52EB55DB0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E216F3C-1EFD-4035-AC43-F52EB55DB0CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D815A59-3CCA-4A76-8B12-0176ED8B3544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D815A59-3CCA-4A76-8B12-0176ED8B3544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D815A59-3CCA-4A76-8B12-0176ED8B3544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D815A59-3CCA-4A76-8B12-0176ED8B3544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4620071D-6D1B-4EA3-987D-AFBEC7095E0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4620071D-6D1B-4EA3-987D-AFBEC7095E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4620071D-6D1B-4EA3-987D-AFBEC7095E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4620071D-6D1B-4EA3-987D-AFBEC7095E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{263F31C2-033F-48DA-846B-04A0D7F6AD4C} = {9EBA3CDC-F29E-4C24-ACA2-D21B40CF7DC9}
+		{9E216F3C-1EFD-4035-AC43-F52EB55DB0CA} = {9EBA3CDC-F29E-4C24-ACA2-D21B40CF7DC9}
+		{C339715E-456D-4A87-955C-B2773090A22B} = {9EBA3CDC-F29E-4C24-ACA2-D21B40CF7DC9}
+		{D4F94047-D49B-4FA8-8FB5-747B27674E4B} = {9EBA3CDC-F29E-4C24-ACA2-D21B40CF7DC9}
+		{8D815A59-3CCA-4A76-8B12-0176ED8B3544} = {D8441C7C-14EA-4027-8273-E82FE1BAE268}
+		{4620071D-6D1B-4EA3-987D-AFBEC7095E0A} = {9EBA3CDC-F29E-4C24-ACA2-D21B40CF7DC9}
 	EndGlobalSection
 EndGlobal

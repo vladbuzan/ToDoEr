@@ -1,8 +1,7 @@
-﻿using Business.Extensions;
-using Infrastructure.Exceptions;
+﻿using Application.Abstractions.Services.CacheService;
+using Application.Exceptions;
 using Infrastructure.Extensions;
 using Infrastructure.Services.CacheService.Implementations;
-using Infrastructure.Services.CacheService.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
