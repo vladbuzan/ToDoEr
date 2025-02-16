@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Services.CacheService;
 using Application.Exceptions;
+using Infrastructure.Exceptions;
 using Infrastructure.Extensions;
 using Infrastructure.Services.CacheService.Implementations;
 

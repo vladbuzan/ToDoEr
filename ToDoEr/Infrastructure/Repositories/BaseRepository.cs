@@ -23,8 +23,7 @@ public abstract class BaseRepository<TEntity>(DbContext context) : IBaseReposito
         .Set<TEntity>()
         .ToListAsync(cancellation);
 
-    public Task<List<TResult>> GetAllAsyncAsNoTracking<TResult>(
-        Expression<Func<TEntity, TResult>> selector,
+    public Task<List<TResult>> GetAllAsyncAsNoTracking<TResult>(Expression<Func<TEntity, TResult>> selector,
         CancellationToken cancellation = default
     ) => context
         .Set<TEntity>()
@@ -32,11 +31,10 @@ public abstract class BaseRepository<TEntity>(DbContext context) : IBaseReposito
         .Select(selector)
         .ToListAsync(cancellation);
 
-    public Task<List<TEntity>> GetAllAsyncAsNoTracking(CancellationToken cancellation = default) =>
-        context
-            .Set<TEntity>()
-            .AsNoTracking()
-            .ToListAsync(cancellation);
+    public Task<List<TEntity>> GetAllAsyncAsNoTracking(CancellationToken cancellation = default) => context
+        .Set<TEntity>()
+        .AsNoTracking()
+        .ToListAsync(cancellation);
 
     public Task<List<TResult>> GetAllAsyncAsNoTracking<TResult>(CancellationToken cancellation =
         default
@@ -73,4 +71,9 @@ public abstract class BaseRepository<TEntity>(DbContext context) : IBaseReposito
     public async Task<EntityEntry<TEntity>> AddAsync(TEntity entity,
         CancellationToken cancellation = default
     ) => await context.Set<TEntity>().AddAsync(entity, cancellation);
+
+    public void Update(TEntity entity, object updateModel) => context.Entry(entity).CurrentValues.SetValues(updateModel);
+
+    public Task<bool> ExistsAsync(Guid id, CancellationToken cancellation = default) =>
+        context.Set<TEntity>().AnyAsync(e => e.Id == id, cancellation);
 }

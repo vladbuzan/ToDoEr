@@ -8,7 +8,7 @@ using Persistence.Context;
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace Persistence.Migrations
 {
     [DbContext(typeof(ToDoErContext))]
     partial class ToDoErContextModelSnapshot : ModelSnapshot
@@ -17,92 +17,79 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Infrastructure.Entities.ToDo", b =>
+            modelBuilder.Entity("Domain.Entities.Board", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)")
+                        .HasColumnName("description");
 
-                    b.Property<Guid>("ToDoListId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ToDoListId");
-
-                    b.ToTable("ToDos");
+                    b.ToTable("boards", (string)null);
                 });
 
-            modelBuilder.Entity("Infrastructure.Entities.ToDoList", b =>
+            modelBuilder.Entity("Domain.Entities.Task", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("BoardId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("board_id");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("BoardId");
 
-                    b.ToTable("ToDoLists");
+                    b.ToTable("tasks", (string)null);
                 });
 
-            modelBuilder.Entity("Infrastructure.Entities.User", b =>
+            modelBuilder.Entity("Domain.Entities.Task", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Type");
-                });
-
-            modelBuilder.Entity("Infrastructure.Entities.ToDo", b =>
-                {
-                    b.HasOne("Infrastructure.Entities.ToDoList", "ToDoList")
-                        .WithMany("ToDos")
-                        .HasForeignKey("ToDoListId")
+                    b.HasOne("Domain.Entities.Board", "Board")
+                        .WithMany("Tasks")
+                        .HasForeignKey("BoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ToDoList");
+                    b.Navigation("Board");
                 });
 
-            modelBuilder.Entity("Infrastructure.Entities.ToDoList", b =>
+            modelBuilder.Entity("Domain.Entities.Board", b =>
                 {
-                    b.HasOne("Infrastructure.Entities.User", null)
-                        .WithMany("ToDoLists")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Infrastructure.Entities.ToDoList", b =>
-                {
-                    b.Navigation("ToDos");
-                });
-
-            modelBuilder.Entity("Infrastructure.Entities.User", b =>
-                {
-                    b.Navigation("ToDoLists");
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

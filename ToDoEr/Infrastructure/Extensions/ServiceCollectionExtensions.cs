@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Repositories;
 using Application.Abstractions.UnitOfWork;
-using Application.Features.Users.Queries;
-using Application.Models.Base;
+using Application.Features.Board.Commands;
 using Infrastructure.Behaviours;
 using Infrastructure.Repositories;
 using Mapster;
@@ -17,12 +16,10 @@ public static class ServiceCollectionExtensions
         string connectionString
     ) => services
         .AddDbContext<ToDoErContext>(options =>
-            options.UseNpgsql(connectionString)
-                .UseLazyLoadingProxies());
-
+            options.UseNpgsql(connectionString));
     public static IServiceCollection AddMediatR(this IServiceCollection services) => services.AddMediatR(cfg =>
     {
-        cfg.RegisterServicesFromAssemblyContaining<GetUsers>()
+        cfg.RegisterServicesFromAssemblyContaining<CreateBoard>()
             .AddOpenBehavior(typeof(TransactionalBehaviour<,>))
             .AddOpenBehavior(typeof(CacheInvalidateBehaviour<,>));
     });
@@ -30,16 +27,13 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddMapster(this IServiceCollection services)
     {
         var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
-        var assembly = typeof(BaseDto<,>).Assembly;
-        typeAdapterConfig.Scan(assembly);
 
         return services;
     }
 
     public static IServiceCollection AddRepositories(this IServiceCollection services) => services
-        .AddScoped<IUserRepository, UserRepository>()
-        .AddScoped<IToDoRepository, ToDoRepository>()
-        .AddScoped<IToDoListRepository, ToDoListRepository>()
+        .AddScoped<ITaskRepository, TaskRepository>()
+        .AddScoped<IBoardRepository, BoardRepository>()
         .AddScoped<IUnitOfWork, UnitOfWork>();
 
     public static IServiceCollection AddRedisCache(this IServiceCollection serviceCollection,

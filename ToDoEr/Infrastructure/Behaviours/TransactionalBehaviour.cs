@@ -13,10 +13,20 @@ public class TransactionalBehaviour<TRequest, TResponse>(IUnitOfWork unitOfWork)
         CancellationToken cancellationToken
     )
     {
-        request.Transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);
-        var response = await next();
-        await request.Transaction.CommitAsync(cancellationToken);
+        await unitOfWork.BeginTransactionAsync(cancellationToken);
 
-        return response;
+        try
+        {
+            var response = await next();
+            await unitOfWork.CommitTransactionAsync(cancellationToken);
+
+            return response;
+        }
+        catch
+        {
+            await unitOfWork.RollbackTransactionAsync(cancellationToken);
+
+            throw;
+        }
     }
 }
