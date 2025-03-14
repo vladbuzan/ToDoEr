@@ -1,0 +1,25 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DB, API" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+    <deployment type="docker-compose.yml">
+      <settings>
+        <option name="envFilePath" value="" />
+        <option name="services">
+          <list>
+            <option value="db" />
+            <option value="api" />
+          </list>
+        </option>
+        <option name="sourceFilePath" value="compose.yaml" />
+        <option name="upAbortOnContainerExit" value="true" />
+        <option name="upDetach" value="false" />
+        <option name="upForceRecreate" value="true" />
+        <option name="upRemoveOrphans" value="true" />
+        <option name="upTimeout" value="10" />
+      </settings>
+    </deployment>
+    <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="true" />
+    <method v="2">
+      <option name="LaunchBrowser.Before.Run" url="https://localhost:5001" />
+    </method>
+  </configuration>
+</component>
